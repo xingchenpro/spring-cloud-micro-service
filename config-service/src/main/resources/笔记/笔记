@@ -1,0 +1,12 @@
+  profiles:
+     active: native
+查找本地的配置文件
+
+share application.yml 所有服务共享的配置文件
+
+服务配置文件命名格式
+applicationName-activeProfile
+例
+applicationName：user-service
+activeProfile：pro
+配置服务配置文件名：user-service-pro.yml
