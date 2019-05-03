@@ -9,19 +9,26 @@
 #          username: 124746406@qq.com
 #          password:
 #      label: master
-
 # ---native
+server:
+  port: 8769
 spring:
   cloud:
     config:
       server:
         native:
-          search-locations: classpath:/shared
+          search-locations: classpath:/share
   profiles:
-     active: native
+    active: native
   application:
     name: config-service
 
-# port
-server:
-  port: 8769
+management:
+  security:
+    enabled: false
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+优先级的问题；SpringCloud里面有个“启动上下文”,主要是用于加载远端的配置,也就是加载ConfigServer里面的配置,默认加载顺序为:
+加载bootstrap.*里面的配置 --> 链接configserver,加载远程配置 --> 加载application.*里面的配置;
+总结:这里需要借助于“启动上下文”来处理加载远程配置；
+
+所以只要将配置文件改为bootstrap.properties或bootstrap.yml文件即可。
+
