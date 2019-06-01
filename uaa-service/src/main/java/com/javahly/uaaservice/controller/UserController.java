@@ -26,19 +26,6 @@ public class UserController {
         return principal;
     }
 
-
-    //@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/session", method = RequestMethod.GET)
-    public String session(HttpServletRequest request){
-        if(request.getSession()!=null)
-            System.err.println(request.getSession());
-        return String.valueOf(request.getSession());
-    }
-
     @RequestMapping("/hi")
     public String hi(){
         return "hi";
@@ -64,7 +51,6 @@ public class UserController {
         System.err.println("principal.toString()"+principal.toString());
         System.err.println("principal.getName()"+principal.getName());
         System.err.println("authentication:"+authentication.getAuthorities().toString());
-
         return authentication.getAuthorities().toString();
     }
 }

@@ -1,19 +1,19 @@
 package com.javahly.userservice;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients
-@EnableHystrixDashboard
-@EnableHystrix
 @MapperScan("com.javahly.userservice.dao")
+@EnableCaching//开启全局缓存
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)//开启session共享，session有效期30分钟
+@EnableSwagger2Doc
 public class UserServiceApplication {
 
 	public static void main(String[] args) {

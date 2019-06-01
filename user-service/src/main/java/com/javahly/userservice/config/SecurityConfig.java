@@ -31,20 +31,16 @@ import java.io.PrintWriter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)//开启方法上的保护
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Bean
     UserDetailsService userService() {
         return new UserService();
     }
-
-
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //从数据库中获取用户认证信息
         auth.userDetailsService(userService());
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -55,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //http.csrf().disable();
         http.authorizeRequests()
-                //.antMatchers("/admin/category/all").authenticated()
                 .antMatchers("/css/**", "/test").permitAll()
                 .antMatchers("/admin/**", "/reg").hasRole("ADMIN")///admin/**的URL都需要有超级管理员角色，如果使用.hasAuthority()方法来配置，需要在参数中加上ROLE_,如下.hasAuthority("ROLE_超级管理员")
                 .anyRequest().authenticated()//其他的路径都是登录后即可访问
@@ -63,7 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
                         String username = authentication.getName();
                         httpServletRequest.getSession().setAttribute("username",username);
                         System.err.println("session:"+httpServletRequest.getSession());
@@ -107,9 +101,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }).and().sessionManagement().invalidSessionUrl("/login")
         ;
         ////logout默认的url是 /logout,如果csrf启用，则请求方式是POST，否则请求方式是GET、POST、PUT、DELETE
-
-
     }
-
-
 }

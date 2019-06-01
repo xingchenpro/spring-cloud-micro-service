@@ -1,10 +1,4 @@
 # 端口设置
-server:
-  port: 8763
-  servlet:
-    session:
-      timeout: 600
-
 spring:
   datasource:
       type: com.alibaba.druid.pool.DruidDataSource
@@ -13,7 +7,12 @@ spring:
       password: roof
       url: jdbc:mysql://localhost:3306/authoritycertificationservice?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
 
+# 集成Mybatis
 mybatis:
-
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.javahly.uaaservice.entity
+server:
+  port: 8764
+  servlet:
+    session:
+      timeout: 6000

@@ -1,0 +1,17 @@
+server:
+  port: 8769
+zuul:
+  routes:
+    api-user:
+      path: /user-api/**
+      serviceId: user-service
+    api-uaa:
+      path: /uaa-api/**
+      serviceId: uaa-service
+swagger:
+  contact:
+    name: hly
+    url: www.javahly.com
+    email: 1136513099@qq.com
+
+
