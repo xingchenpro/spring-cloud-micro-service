@@ -16,6 +16,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableSwagger2Doc
 public class UserServiceApplication {
 
+    //http://localhost:8762/swagger-ui.html
 	public static void main(String[] args) {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}

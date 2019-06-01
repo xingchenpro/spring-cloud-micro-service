@@ -79,9 +79,8 @@ public class OAuth2ServerConfig {
                     .authorities("oauth2")
                     .secret(finalSecret)
                     //密码模式
-                    .and().withClient("client_2")
-                    //.resourceIds(ARTICLE_RESOURCE_ID,VIDEO_RESOURCE_ID)
-                    .authorizedGrantTypes("password", "refresh_token")
+                    .and().withClient("gateway-service")
+                    .authorizedGrantTypes("password", "client_credentials","refresh_token")
                     .scopes("server")
                     .authorities("oauth2")
                     .secret(finalSecret)

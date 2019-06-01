@@ -51,16 +51,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/css/**", "/test").permitAll()
-                .antMatchers("/admin/**", "/reg").hasRole("ADMIN")///admin/**的URL都需要有超级管理员角色，如果使用.hasAuthority()方法来配置，需要在参数中加上ROLE_,如下.hasAuthority("ROLE_超级管理员")
+                .antMatchers("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**").permitAll()
+                .antMatchers("/login/**").permitAll()
                 .anyRequest().authenticated()//其他的路径都是登录后即可访问
                 .and().formLogin().loginPage("/login_page")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                        String username = authentication.getName();
-                        httpServletRequest.getSession().setAttribute("username",username);
-                        System.err.println("session:"+httpServletRequest.getSession());
+                        httpServletRequest.getSession().setAttribute("username",authentication.getName());
                         System.err.println(httpServletRequest.getSession().getAttribute("username"));
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();

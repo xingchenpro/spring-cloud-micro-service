@@ -1,0 +1,2 @@
+"/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**"
+解决swagger被拦截问题

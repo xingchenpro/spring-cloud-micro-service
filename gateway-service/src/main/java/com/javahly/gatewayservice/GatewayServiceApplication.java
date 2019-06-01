@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
@@ -17,14 +18,15 @@ import java.util.List;
 @EnableEurekaClient
 @EnableZuulProxy
 @EnableSwagger2Doc
+@EnableResourceServer
 public class GatewayServiceApplication {
 
 	/**
 	 * 路由网关
-	 * 访问：http://localhost:8769/service-user/user-api/users ;
-	 * 访问: http://localhost:8769/service-blog/blog-api/blogs ;
+	 * 访问：http://localhost:8768/user-service/user-api/users ;
+	 * 访问: http://localhost:8768/blog-service/blog-api/blogs ;
 	 * swagger
-	 * http://localhost:8769/swagger-ui.html
+	 * http://localhost:8768/swagger-ui.html
 	 * @param
 	 */
 	public static void main(String[] args) {
@@ -37,8 +39,8 @@ public class GatewayServiceApplication {
 		@Override
 		public List<SwaggerResource> get() {
 			List resources = new ArrayList<>();
-			resources.add(swaggerResource("user-service", "/service-user/v2/api-docs", "2.0"));
-			resources.add(swaggerResource("blog-service", "/service-blog/v2/api-docs", "2.0"));
+			resources.add(swaggerResource("user-service", "/user-service/v2/api-docs", "2.0"));
+			resources.add(swaggerResource("blog-service", "/blog-service/v2/api-docs", "2.0"));
 			return resources;
 		}
 
