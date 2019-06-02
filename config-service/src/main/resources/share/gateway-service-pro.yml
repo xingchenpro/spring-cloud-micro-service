@@ -1,13 +1,14 @@
 server:
   port: 8768
 zuul:
-  sensitiveHeaders: "*"
-  ignoredHeaders: authorization
+  OAuth2TokenRelayFilter:
+   pre:
+    disable: true
+  sensitiveHeaders:
   routes:
     api-user:
       path: /user-api/**
       serviceId: user-service
-      sensitiveHeaders: "*"
     api-uaa:
       path: /uaa-api/**
       serviceId: uaa-service

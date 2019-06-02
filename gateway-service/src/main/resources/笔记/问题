@@ -15,3 +15,22 @@ zuul:
 sensitive-headers:   #此处不写则无法携带header;如果客户端在发请求是带了X-ABC，那么X-ABC不会传递给下游服务
 ignoredHeaders: X-ABC    #如果客户端在发请求是带了X-ABC，那么X-ABC依然会传递给下游服务。但是如果下游服务再转发就会被过滤
 
+
+3.pre OAuth2TokenRelayFilter
+String value = (String) ctx.get(ACCESS_TOKEN);
+        if ( value != null && !value.isEmpty()){
+            return value ;
+        }
+
+//https://stackoverflow.com/questions/44400280/springboot-zuul-oauth2-oauth2tokenrelayfilter-reauthorization
+
+zuul:
+  OAuth2TokenRelayFilter:
+   pre:
+    disable: true
+@Component("oAuth2TokenRelayFilter")
+MyOAuth2TokenRelayFilter
+
+OAuth2TokenRelayFilter
+原理：
+如果@Autowire Spring会根据类型去寻找 OAuth2TokenRelayFilter的Bean，但是现在有两个
