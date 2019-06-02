@@ -23,9 +23,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
         http.requestMatchers()
                 .anyRequest()
                 .and().authorizeRequests()
-                .antMatchers("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**").permitAll()
-                .antMatchers("/user-service/v2/api-docs","/blog-service/v2/api-docs").permitAll()
-                .antMatchers("/user-api/login/**","/uaa-api/oauth/token/**").permitAll()
+                .antMatchers("/user-api/login/**","/uaa-api/oauth/token/**").permitAll()//,"/user-api/users/**"
                 .anyRequest().authenticated();//其他的路径都是登录后即可访问
 
     }

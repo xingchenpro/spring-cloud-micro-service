@@ -1,10 +1,13 @@
 server:
   port: 8768
 zuul:
+  sensitiveHeaders: "*"
+  ignoredHeaders: authorization
   routes:
     api-user:
       path: /user-api/**
       serviceId: user-service
+      sensitiveHeaders: "*"
     api-uaa:
       path: /uaa-api/**
       serviceId: uaa-service
@@ -31,3 +34,4 @@ security:
       grant-type: client_credentials,password
       # 客户端的域
       scope: server
+

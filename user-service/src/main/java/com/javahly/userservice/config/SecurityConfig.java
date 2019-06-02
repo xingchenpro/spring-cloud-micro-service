@@ -52,13 +52,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**").permitAll()
-                .antMatchers("/login/**").permitAll()
                 .anyRequest().authenticated()//其他的路径都是登录后即可访问
                 .and().formLogin().loginPage("/login_page")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                        httpServletRequest.getSession().setAttribute("username",authentication.getName());
+                        String username = authentication.getName();
+                        httpServletRequest.getSession().setAttribute("username",username);
+                        System.err.println("session:"+httpServletRequest.getSession());
                         System.err.println(httpServletRequest.getSession().getAttribute("username"));
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();
