@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      uri: http://localhost:8769
+      fail-fast: true
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  profiles:
+    active: pro
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
