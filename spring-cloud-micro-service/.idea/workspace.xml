@@ -181,7 +181,7 @@
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="87" />
+    <option name="x" value="144" />
     <option name="y" value="8" />
     <option name="width" value="1792" />
     <option name="height" value="1025" />
@@ -679,15 +679,15 @@
       <workItem from="1565419752610" duration="10719000" />
       <workItem from="1565497241721" duration="7161000" />
       <workItem from="1565507146509" duration="1334000" />
-      <workItem from="1565508585985" duration="2718000" />
+      <workItem from="1565508585985" duration="2793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21932000" />
+    <option name="totallyTimeSpent" value="22007000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="87" y="8" width="1792" height="1025" extended-state="0" />
+    <frame x="144" y="8" width="1792" height="1025" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6647128" sideWeight="0.5069849" order="7" side_tool="true" content_ui="tabs" />
