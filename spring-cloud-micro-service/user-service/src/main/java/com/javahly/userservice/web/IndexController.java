@@ -1,11 +1,13 @@
 package com.javahly.userservice.web;
 
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.javahly.userservice.entity.User;
 import com.javahly.userservice.mapper.IndexMapper;
 import com.javahly.userservice.util.RedisUtil;
 import com.javahly.userservice.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +54,8 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/user")
+    @Transactional
+    @LcnTransaction //分布式事务注解
     public Result addUser() {
         Result result = new Result();
         int addResult = indexMapper.addUsers();

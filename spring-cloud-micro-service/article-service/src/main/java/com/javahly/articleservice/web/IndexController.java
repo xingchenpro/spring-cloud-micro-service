@@ -1,5 +1,6 @@
 package com.javahly.articleservice.web;
 
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.javahly.articleservice.entity.Articles;
 import com.javahly.articleservice.mapper.IndexMapper;
 import com.javahly.articleservice.util.RedisUtil;
@@ -7,8 +8,10 @@ import com.javahly.articleservice.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.rmi.CORBA.Util;
 import java.util.List;
@@ -38,6 +41,9 @@ public class IndexController {
     @Autowired
     IndexMapper indexMapper;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @RequestMapping(value = "/articles")
     public Result getArticles(){
         Result result = new Result();
@@ -54,9 +60,13 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/article")
+    @Transactional
+    @LcnTransaction //分布式事务注解
     public Result addUser() {
         Result result = new Result();
         int addResult = indexMapper.addArticle();
+        restTemplate.getForObject("http://localhost:8884/user",String.class);
+        //int a = 1/0;
         result.setResult(addResult);
         return result;
     }
